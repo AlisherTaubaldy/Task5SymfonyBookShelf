@@ -1,0 +1,9 @@
+# .htaccess in the public directory
+RewriteEngine On
+
+# Убедитесь, что запросы на реальные файлы или директории не будут переписаны
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Перенаправляем все остальные запросы на index.php
+RewriteRule ^(.*)$ /index.php [QSA,L]
