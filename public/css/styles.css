@@ -1,0 +1,68 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+.card {
+    border-radius: 10px;
+}
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+/* Затемнение фона */
+#book-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    display: none;
+}
+
+/* Окно с деталями книги */
+#book-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 600px;
+    background: white;
+    z-index: 1050;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+}
+.toggle-details {
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+.toggle-details:hover {
+    color: #007bff;
+}
+.toggle-details {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.toggle-details i {
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+
+.toggle-details:hover i {
+    color: #007bff;
+}
+
+.details-row {
+    transition: height 0.3s ease-in-out;
+}

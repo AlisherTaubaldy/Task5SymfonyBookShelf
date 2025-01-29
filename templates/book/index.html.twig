@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Store{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">📚 Book Store</h1>
+
+    <div class="card p-3 mb-4 shadow-sm">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Seed</label>
+                <input type="number" id="seed" class="form-control" value="42">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Language</label>
+                <select id="language" class="form-select">
+                    <option value="en">English (US)</option>
+                    <option value="de">German (Germany)</option>
+                    <option value="fr">French (France)</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Likes</label>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-thumbs-up text-primary me-2"></i>
+                    <input type="range" id="likes" class="form-range me-2" min="0" max="10" step="0.1" value="5">
+                    <span id="likes-value" class="badge bg-primary px-3">5.0</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Reviews</label>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-comment-alt text-success me-2"></i>
+                    <input type="number" id="reviews" class="form-control w-50" min="0" max="10" step="0.1" value="4.7">
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <button id="add-books" class="btn btn-primary w-100">🔀 Добавить книги</button>
+                <button id="export-csv" class="btn btn-outline-secondary w-100 mt-2">📂 Экспорт в CSV</button>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody id="books-table"></tbody>
+    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const likesInput = document.getElementById("likes");
+            const likesValue = document.getElementById("likes-value");
+
+            likesInput.addEventListener("input", function () {
+                likesValue.textContent = parseFloat(likesInput.value).toFixed(1);
+            });
+        });
+    </script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
