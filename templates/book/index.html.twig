@@ -6,10 +6,15 @@
     <h1 class="text-center mb-4">📚 Book Store</h1>
 
     <div class="card p-3 mb-4 shadow-sm">
-        <div class="row g-3 align-items-center">
-            <div class="col-md-2">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-3">
                 <label class="form-label fw-bold">Seed</label>
-                <input type="number" id="seed" class="form-control" value="42">
+                <div class="d-flex">
+                    <input type="number" id="seed" class="form-control me-2" value="42">
+                    <button id="random-seed" class="btn btn-outline-secondary">
+                        <i class="fas fa-random"></i>
+                    </button>
+                </div>
             </div>
             <div class="col-md-2">
                 <label class="form-label fw-bold">Language</label>
@@ -34,7 +39,7 @@
                     <input type="number" id="reviews" class="form-control w-50" min="0" max="10" step="0.1" value="4.7">
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-4 text-center">
                 <button id="add-books" class="btn btn-primary w-100">🔀 Добавить книги</button>
                 <button id="export-csv" class="btn btn-outline-secondary w-100 mt-2">📂 Экспорт в CSV</button>
             </div>
@@ -63,6 +68,17 @@
         document.addEventListener("DOMContentLoaded", function () {
             const likesInput = document.getElementById("likes");
             const likesValue = document.getElementById("likes-value");
+            const seedInput = document.getElementById("seed");
+            const randomSeedButton = document.getElementById("random-seed");
+
+            function generateRandomSeed() {
+                return Math.floor(Math.random() * 999999) + 1;
+            }
+
+            randomSeedButton.addEventListener("click", function () {
+                seedInput.value = generateRandomSeed();
+                loadBooks(10, true);
+            });
 
             likesInput.addEventListener("input", function () {
                 likesValue.textContent = parseFloat(likesInput.value).toFixed(1);
